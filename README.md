@@ -75,5 +75,5 @@
    git clone https://github.com/iskende449/Weather-Forecast.git
 
 
-   ##Figma
-   https://www.figma.com/design/hl0uJAnK5dIEQIsKFAlkp1/Untitled?node-id=0-1&t=DyCkgD3xyWDrTg4U-1
+  Figma
+   [Figma](https://www.figma.com/design/hl0uJAnK5dIEQIsKFAlkp1/Untitled?node-id=0-1&t=DyCkgD3xyWDrTg4U-1)
