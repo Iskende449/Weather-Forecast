@@ -202,6 +202,10 @@ body {
     display: flex;
     flex-direction: column;
 }
+.search-box {
+    overflow: hidden;
+}
+
 
 .temperature {
     font-size: 4rem;
@@ -350,5 +354,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
 
 
