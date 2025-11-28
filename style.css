@@ -361,6 +361,13 @@ body {
         grid-template-columns: 1fr;
     }
 }
+.search-input {
+    border-radius: 50px;
+}
+.search-input {
+    background: transparent;
+}
+
 
 
 
