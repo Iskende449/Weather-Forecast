@@ -76,5 +76,5 @@
 
 
   
-  [Figma](https://www.figma.com/design/hl0uJAnK5dIEQIsKFAlkp1/Untitled?node-id=0-1&t=DyCkgD3xyWDrTg4U-1)
+  [Figma](https://www.figma.com/proto/hl0uJAnK5dIEQIsKFAlkp1/Untitled?node-id=1-2&p=f&t=CB9qCbLGXc4MaHzQ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1)
   [Presantation](https://www.canva.com/design/DAG54yP89w4/BnjPcqmFgJFav2ODXakUrw/edit?utm_content=DAG54yP89w4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
