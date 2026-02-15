@@ -1,0 +1,154 @@
+/* Основные настройки */
+:root {
+  --primary: #6366f1;
+  --bg: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text: #f8fafc;
+  --text-dim: #94a3b8;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+/* Шапка */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--text-dim);
+}
+
+/* Поиск */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: white;
+  font-size: 1rem;
+}
+
+.search-btn {
+  padding: 0 20px;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Карточка текущей погоды */
+.current-weather {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.weather-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.temperature {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.description {
+  color: var(--text-dim);
+  text-transform: capitalize;
+}
+
+/* Прогноз */
+.forecast-section {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.forecast-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.forecast-item {
+  text-align: center;
+  min-width: 80px;
+}
+
+.forecast-day {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.forecast-temp {
+  font-weight: bold;
+}
+
+/* Загрузка и ошибки */
+.loading {
+  text-align: center;
+  padding: 20px;
+}
+
+.error {
+  background: #7f1d1d;
+  color: #fca5a5;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
