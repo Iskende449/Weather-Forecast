@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './index.css';
 
-// Конфигурация API (бесплатный Open-Meteo)
 const GEO_API = 'https://geocoding-api.open-meteo.com/v1/search';
 const WEATHER_API = 'https://api.open-meteo.com/v1/forecast';
 
-// Словарь погодных условий для перевода и иконок
 const weatherCodes = {
     0: { desc: 'Ясно', icon: '☀️' },
     1: { desc: 'В основном ясно', icon: '🌤️' },
@@ -19,13 +17,11 @@ const weatherCodes = {
 };
 
 function App() {
-    // Состояния для хранения данных
-    const [city, setCity] = useState(''); // Ввод пользователя
-    const [weather, setWeather] = useState(null); // Данные о погоде
-    const [loading, setLoading] = useState(false); // Загрузка
-    const [error, setError] = useState(null); // Ошибки
+    const [city, setCity] = useState('');
+    const [weather, setWeather] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    // Функция для поиска погоды
     async function fetchWeather() {
         if (!city.trim()) return;
 
@@ -33,7 +29,6 @@ function App() {
         setError(null);
 
         try {
-            // 1. Ищем координаты города по названию
             const geoRes = await fetch(`${GEO_API}?name=${city}&count=1&language=ru`);
             const geoData = await geoRes.json();
 
@@ -41,13 +36,11 @@ function App() {
 
             const { latitude, longitude, name, country } = geoData.results[0];
 
-            // 2. Получаем погоду по координатам
             const weatherRes = await fetch(
                 `${WEATHER_API}?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`
             );
             const weatherData = await weatherRes.json();
 
-            // Сохраняем результат
             setWeather({
                 cityName: name,
                 countryName: country,
@@ -61,7 +54,6 @@ function App() {
         }
     }
 
-    // Помощник для получения описания по коду
     const getWeatherInfo = (code) => weatherCodes[code] || { desc: 'Неизвестно', icon: '❓' };
 
     return (
@@ -71,7 +63,6 @@ function App() {
                 <p className="subtitle">Простой прогноз для любого города</p>
             </header>
 
-            {/* Поиск */}
             <div className="search-section">
                 <div className="search-box">
                     <input
@@ -85,11 +76,9 @@ function App() {
                 </div>
             </div>
 
-            {/* Ошибки и загрузка */}
             {loading && <div className="loading"><div className="spinner"></div><p>Ищем...</p></div>}
             {error && <div className="error">⚠️ {error}</div>}
 
-            {/* Результат */}
             {weather && !loading && (
                 <div className="weather-container">
                     <div className="current-weather">
@@ -115,7 +104,6 @@ function App() {
                         </div>
                     </div>
 
-                    {/* Короткий прогноз */}
                     <div className="forecast-section">
                         <h3 className="forecast-title">На следующие дни</h3>
                         <div className="forecast-list">

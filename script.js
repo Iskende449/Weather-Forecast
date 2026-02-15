@@ -1,9 +1,6 @@
-// Weather Forecast JS using Open-Meteo (no API key required)
-
 const geoApiBase = 'https://geocoding-api.open-meteo.com/v1/search';
 const weatherApiBase = 'https://api.open-meteo.com/v1/forecast';
 
-// DOM elements
 const cityInput = document.getElementById('cityInput');
 const searchBtn = document.getElementById('searchBtn');
 const loadingEl = document.getElementById('loading');
@@ -43,47 +40,46 @@ function countryCodeToFlagEmoji(cc) {
 }
 
 function emojiToSvgDataUrl(emoji, size = 160) {
-	const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'><text x='50%' y='50%' font-size='${Math.floor(size*0.6)}' text-anchor='middle' dominant-baseline='central'>${emoji}</text></svg>`;
+	const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'><text x='50%' y='50%' font-size='${Math.floor(size * 0.6)}' text-anchor='middle' dominant-baseline='central'>${emoji}</text></svg>`;
 	return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
 
 const weatherCodeMap = {
-	0: {desc: 'Clear sky', emoji: '☀️'},
-	1: {desc: 'Mainly clear', emoji: '🌤️'},
-	2: {desc: 'Partly cloudy', emoji: '⛅'},
-	3: {desc: 'Overcast', emoji: '☁️'},
-	45: {desc: 'Fog', emoji: '🌫️'},
-	48: {desc: 'Depositing rime fog', emoji: '🌫️'},
-	51: {desc: 'Light drizzle', emoji: '🌦️'},
-	53: {desc: 'Moderate drizzle', emoji: '🌦️'},
-	55: {desc: 'Dense drizzle', emoji: '🌧️'},
-	56: {desc: 'Light freezing drizzle', emoji: '🌧️❄️'},
-	57: {desc: 'Dense freezing drizzle', emoji: '🌧️❄️'},
-	61: {desc: 'Slight rain', emoji: '🌧️'},
-	63: {desc: 'Moderate rain', emoji: '🌧️'},
-	65: {desc: 'Heavy rain', emoji: '⛈️'},
-	66: {desc: 'Light freezing rain', emoji: '🌧️❄️'},
-	67: {desc: 'Heavy freezing rain', emoji: '🌧️❄️'},
-	71: {desc: 'Slight snow', emoji: '🌨️'},
-	73: {desc: 'Moderate snow', emoji: '🌨️'},
-	75: {desc: 'Heavy snow', emoji: '❄️'},
-	77: {desc: 'Snow grains', emoji: '❄️'},
-	80: {desc: 'Slight rain showers', emoji: '🌦️'},
-	81: {desc: 'Moderate rain showers', emoji: '🌧️'},
-	82: {desc: 'Violent rain showers', emoji: '⛈️'},
-	85: {desc: 'Slight snow showers', emoji: '🌨️'},
-	86: {desc: 'Heavy snow showers', emoji: '❄️'},
-	95: {desc: 'Thunderstorm', emoji: '⛈️'},
-	96: {desc: 'Thunderstorm with slight hail', emoji: '⛈️'},
-	99: {desc: 'Thunderstorm with heavy hail', emoji: '⛈️'},
+	0: { desc: 'Clear sky', emoji: '☀️' },
+	1: { desc: 'Mainly clear', emoji: '🌤️' },
+	2: { desc: 'Partly cloudy', emoji: '⛅' },
+	3: { desc: 'Overcast', emoji: '☁️' },
+	45: { desc: 'Fog', emoji: '🌫️' },
+	48: { desc: 'Depositing rime fog', emoji: '🌫️' },
+	51: { desc: 'Light drizzle', emoji: '🌦️' },
+	53: { desc: 'Moderate drizzle', emoji: '🌦️' },
+	55: { desc: 'Dense drizzle', emoji: '🌧️' },
+	56: { desc: 'Light freezing drizzle', emoji: '🌧️❄️' },
+	57: { desc: 'Dense freezing drizzle', emoji: '🌧️❄️' },
+	61: { desc: 'Slight rain', emoji: '🌧️' },
+	63: { desc: 'Moderate rain', emoji: '🌧️' },
+	65: { desc: 'Heavy rain', emoji: '⛈️' },
+	66: { desc: 'Light freezing rain', emoji: '🌧️❄️' },
+	67: { desc: 'Heavy freezing rain', emoji: '🌧️❄️' },
+	71: { desc: 'Slight snow', emoji: '🌨️' },
+	73: { desc: 'Moderate snow', emoji: '🌨️' },
+	75: { desc: 'Heavy snow', emoji: '❄️' },
+	77: { desc: 'Snow grains', emoji: '❄️' },
+	80: { desc: 'Slight rain showers', emoji: '🌦️' },
+	81: { desc: 'Moderate rain showers', emoji: '🌧️' },
+	82: { desc: 'Violent rain showers', emoji: '⛈️' },
+	85: { desc: 'Slight snow showers', emoji: '🌨️' },
+	86: { desc: 'Heavy snow showers', emoji: '❄️' },
+	95: { desc: 'Thunderstorm', emoji: '⛈️' },
+	96: { desc: 'Thunderstorm with slight hail', emoji: '⛈️' },
+	99: { desc: 'Thunderstorm with heavy hail', emoji: '⛈️' },
 };
 
 function getWeatherDescAndEmoji(code) {
-	return weatherCodeMap[code] || {desc: 'Unknown', emoji: '❓'};
+	return weatherCodeMap[code] || { desc: 'Unknown', emoji: '❓' };
 }
 
 function findNearestIndex(timeArray, targetIso) {
-	// timeArray are ISO strings
 	let bestIdx = 0;
 	let bestDiff = Infinity;
 	const target = new Date(targetIso).getTime();
@@ -136,7 +132,7 @@ function renderCurrentWeather(place, weatherData) {
 	cityNameEl.textContent = `${flag} ${place.name}${place.admin1 ? ', ' + place.admin1 : ''}, ${place.country}`;
 
 	const d = new Date(nowIso);
-	dateEl.textContent = d.toLocaleString(undefined, {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+	dateEl.textContent = d.toLocaleString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 
 	weatherIconEl.src = emojiToSvgDataUrl(wc.emoji, 160);
 	weatherIconEl.alt = wc.desc;
@@ -161,7 +157,7 @@ function renderForecast(weatherData) {
 		const wc = getWeatherDescAndEmoji(wcode);
 
 		const day = new Date(dateStr);
-		const dayName = day.toLocaleDateString(undefined, {weekday: 'short'});
+		const dayName = day.toLocaleDateString(undefined, { weekday: 'short' });
 
 		const item = document.createElement('div');
 		item.className = 'forecast-item';
@@ -205,7 +201,3 @@ cityInput.addEventListener('keydown', (e) => {
 		searchAndShow(city);
 	}
 });
-
-// Optional: initial sample city
-// searchAndShow('Moscow');
-
